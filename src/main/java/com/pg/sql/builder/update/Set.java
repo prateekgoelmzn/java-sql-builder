@@ -9,8 +9,8 @@ import com.pg.sql.builder.common.Where;
 
 public class Set {
 
-	StringBuilder query;
-	List<Condition> conditions;
+	private StringBuilder query;
+	private List<Condition> conditions;
 
 	public Set(StringBuilder query, Condition cond) {
 		this.query = query;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Where {
-	StringBuilder query;
+	private StringBuilder query;
 
 	public Where(StringBuilder query) {
 		this.query = query;
@@ -113,10 +113,6 @@ public class Where {
 		query.append(" ");
 		return this;
 	}
-
-	/*
-	 * public Where and() { query.append("AND"); query.append(" "); return this; }
-	 */
 
 	public Where andIsEqual(String lhs, Object rhs) {
 		query.append("AND");
