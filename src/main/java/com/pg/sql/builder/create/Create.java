@@ -6,7 +6,7 @@ import java.util.List;
 import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.Column;
 
-public class Create extends Build {
+public class Create  extends Build {
 
 	private StringBuilder query;
 	private List<Column> columns;
