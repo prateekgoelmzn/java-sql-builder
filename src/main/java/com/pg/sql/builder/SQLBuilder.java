@@ -3,6 +3,7 @@ package com.pg.sql.builder;
 import com.pg.sql.builder.alter.Alter;
 import com.pg.sql.builder.create.Create;
 import com.pg.sql.builder.delete.Delete;
+import com.pg.sql.builder.drop.Drop;
 import com.pg.sql.builder.insert.Insert;
 import com.pg.sql.builder.select.Select;
 import com.pg.sql.builder.update.Update;
@@ -42,5 +43,9 @@ public class SQLBuilder {
 	public Alter alter() {
 		return new Alter(query);
 	}
-
+	
+	public Drop drop() {
+		return new Drop(query);
+	}
+	
 }
