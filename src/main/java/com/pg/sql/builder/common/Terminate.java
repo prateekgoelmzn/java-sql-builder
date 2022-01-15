@@ -1,14 +1,11 @@
 package com.pg.sql.builder.common;
 
-public class Terminate {
+public class Terminate extends Build {
 
 	private StringBuilder query;
 
 	public Terminate(StringBuilder query) {
+		super(query);
 		this.query = query;
-	}
-
-	public String build() {
-		return query.toString().trim();
 	}
 }

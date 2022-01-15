@@ -3,14 +3,16 @@ package com.pg.sql.builder.create;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.Column;
 
-public class Create {
+public class Create extends Build {
 
 	private StringBuilder query;
 	private List<Column> columns;
 
 	public Create(StringBuilder query) {
+		super(query);
 		this.query = query;
 		query.append("CREATE");
 		query.append(" ");
@@ -46,6 +48,7 @@ public class Create {
 		query.append(")");
 	}
 
+	@Override
 	public String build() {
 		createColumnString();
 		return query.toString().trim();

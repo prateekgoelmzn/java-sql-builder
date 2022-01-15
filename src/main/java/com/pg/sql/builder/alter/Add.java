@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.Column;
 
-public class Add {
+public class Add extends Build{
 
 	private StringBuilder query;
 	private List<Column> addColumns;
 
 	public Add(StringBuilder query) {
+		super(query);
 		this.query = query;
 		query.append("ADD");
 		query.append(" ");
@@ -31,6 +33,7 @@ public class Add {
 		return this;
 	}
 
+	@Override
 	public String build() {
 		query.append("(");
 		query.append(" ");

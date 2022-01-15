@@ -3,10 +3,11 @@ package com.pg.sql.builder.common;
 import java.util.Arrays;
 import java.util.List;
 
-public class Where {
+public class Where extends Build{
 	private StringBuilder query;
 
 	public Where(StringBuilder query) {
+		super(query);
 		this.query = query;
 		query.append("WHERE");
 		query.append(" ");
@@ -173,8 +174,30 @@ public class Where {
 		query.append(" ");
 		return in(colName, qry);
 	}
-
-	public String build() {
-		return query.toString().trim();
+	
+	public Where orderBy( String ...strings) {
+		query.append("ORDER BY");
+		query.append(" ");
+		List<String> list = Arrays.asList(strings);
+		String lastEle = (list.get(list.size()-1));
+		String order = null;
+		int size = list.size();
+		if (lastEle.equals("ASC") || lastEle.equals("DESC")){
+			order = lastEle;
+			size = size-1;
+		}
+		for(int i=0;i<size;i++) {
+			query.append(list.get(i));
+			if(i!=size-1) {
+				query.append(",");
+			}
+			query.append(" ");
+		}
+		if(order!=null) {
+			query.append(order);
+		}
+		query.append(" ");
+		return this;
 	}
+	
 }
