@@ -3,7 +3,7 @@ package com.pg.sql.builder.common;
 import java.util.Arrays;
 import java.util.List;
 
-public class Where extends Build{
+public class Where extends Build {
 	private StringBuilder query;
 
 	public Where(StringBuilder query) {
@@ -83,7 +83,7 @@ public class Where extends Build{
 		return this;
 	}
 
-	public Where in(String colName, Object ... listValues) {
+	public Where in(String colName, Object... listValues) {
 		List<Object> list = Arrays.asList(listValues);
 		query.append(colName);
 		query.append(" ");
@@ -102,7 +102,7 @@ public class Where extends Build{
 		query.append(" ");
 		return this;
 	}
-	
+
 	public <T> Where in(String colName, List<T> list) {
 		query.append(colName);
 		query.append(" ");
@@ -121,7 +121,6 @@ public class Where extends Build{
 		query.append(" ");
 		return this;
 	}
-
 
 	public Where in(String colName, String qry) {
 		query.append(colName);
@@ -183,7 +182,7 @@ public class Where extends Build{
 		return isBetween(colName, firstVal, secondVal);
 	}
 
-	public Where andIn(String colName, Object ... listValues) {
+	public Where andIn(String colName, Object... listValues) {
 		query.append("AND");
 		query.append(" ");
 		return in(colName, listValues);
@@ -194,30 +193,30 @@ public class Where extends Build{
 		query.append(" ");
 		return in(colName, qry);
 	}
-	
-	public Where orderBy( String ...strings) {
+
+	public Where orderBy(String... strings) {
 		query.append("ORDER BY");
 		query.append(" ");
 		List<String> list = Arrays.asList(strings);
-		String lastEle = (list.get(list.size()-1));
+		String lastEle = (list.get(list.size() - 1));
 		String order = null;
 		int size = list.size();
-		if (lastEle.equals("ASC") || lastEle.equals("DESC")){
+		if (lastEle.equals("ASC") || lastEle.equals("DESC")) {
 			order = lastEle;
-			size = size-1;
+			size = size - 1;
 		}
-		for(int i=0;i<size;i++) {
+		for (int i = 0; i < size; i++) {
 			query.append(list.get(i));
-			if(i!=size-1) {
+			if (i != size - 1) {
 				query.append(",");
 			}
 			query.append(" ");
 		}
-		if(order!=null) {
+		if (order != null) {
 			query.append(order);
 		}
 		query.append(" ");
 		return this;
 	}
-	
+
 }

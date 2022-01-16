@@ -1,6 +1,5 @@
 package com.pg.sql.builder.common;
 
-
 public class Utility {
 
 	private static Utility instance;

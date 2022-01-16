@@ -3,7 +3,7 @@ package com.pg.sql.builder.delete;
 import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.From;
 
-public class Delete  extends Build{
+public class Delete extends Build {
 
 	private StringBuilder query;
 

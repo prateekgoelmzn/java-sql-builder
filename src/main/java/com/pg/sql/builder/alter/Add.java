@@ -7,7 +7,7 @@ import java.util.List;
 import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.Column;
 
-public class Add extends Build{
+public class Add extends Build {
 
 	private StringBuilder query;
 	private List<Column> addColumns;
@@ -21,14 +21,14 @@ public class Add extends Build{
 	}
 
 	public Add column(String columnName, String dataType) {
-		this.addColumns.add(Column.init(columnName,dataType));
+		this.addColumns.add(Column.init(columnName, dataType));
 		return this;
 	}
 
-	public Add columns(String ... list ) {
-		for(String str : Arrays.asList(list)) {
+	public Add columns(String... list) {
+		for (String str : Arrays.asList(list)) {
 			String[] info = str.split("\\s+");
-			this.addColumns.add(Column.init(info[0],info[1]));
+			this.addColumns.add(Column.init(info[0], info[1]));
 		}
 		return this;
 	}

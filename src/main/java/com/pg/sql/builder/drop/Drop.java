@@ -2,7 +2,7 @@ package com.pg.sql.builder.drop;
 
 import com.pg.sql.builder.common.Build;
 
-public class Drop extends Build{
+public class Drop extends Build {
 	private StringBuilder query;
 
 	public Drop(StringBuilder query) {

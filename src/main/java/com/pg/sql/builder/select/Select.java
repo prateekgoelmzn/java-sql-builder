@@ -30,12 +30,12 @@ public class Select {
 		return this;
 	}
 
-	public Select columns(String ... columnList ) {
+	public Select columns(String... columnList) {
 		this.selectColumns.addAll(Arrays.asList(columnList));
 		return this;
 	}
-	
-	public Select columns(List<String> columnList ) {
+
+	public Select columns(List<String> columnList) {
 		this.selectColumns.addAll(columnList);
 		return this;
 	}

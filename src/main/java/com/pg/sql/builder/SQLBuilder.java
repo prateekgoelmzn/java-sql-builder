@@ -23,11 +23,10 @@ public class SQLBuilder {
 		return new Select(query);
 	}
 
-	
-	  public Insert insert() {
-		  return new Insert(query);
-	  }
-	  
+	public Insert insert() {
+		return new Insert(query);
+	}
+
 	public Delete delete() {
 		return new Delete(query);
 	}
@@ -43,9 +42,9 @@ public class SQLBuilder {
 	public Alter alter() {
 		return new Alter(query);
 	}
-	
+
 	public Drop drop() {
 		return new Drop(query);
 	}
-	
+
 }

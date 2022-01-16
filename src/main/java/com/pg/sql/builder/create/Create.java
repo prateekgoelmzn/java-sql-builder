@@ -6,7 +6,7 @@ import java.util.List;
 import com.pg.sql.builder.common.Build;
 import com.pg.sql.builder.common.Column;
 
-public class Create  extends Build {
+public class Create extends Build {
 
 	private StringBuilder query;
 	private List<Column> columns;
@@ -28,7 +28,7 @@ public class Create  extends Build {
 	}
 
 	public Create addColumnNameAndDataType(String colName, String dataType) {
-		this.columns.add(Column.init(colName,dataType));
+		this.columns.add(Column.init(colName, dataType));
 		return this;
 	}
 
