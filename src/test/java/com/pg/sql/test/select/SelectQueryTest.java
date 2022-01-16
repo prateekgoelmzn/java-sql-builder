@@ -2,6 +2,8 @@ package com.pg.sql.test.select;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import com.pg.sql.builder.SQLBuilder;
@@ -21,14 +23,38 @@ public class SelectQueryTest {
 
 	@Test
 	public void selectInQuery() {
-		String selectAllQuery = SQLBuilder.write().select()
+		String selectInQuery = SQLBuilder.write().select()
 				.all()
 				.from("Employee")
 				.where()
-				.in("empId", "1234","321","456","9875")
+				.in("empId",  "abc","def","ghi","jkl")
 				.build();
-		String expectedSelectAllQuery = "SELECT * FROM Employee WHERE empId IN ('1234','321','456','9875')";
-		assertEquals(selectAllQuery,expectedSelectAllQuery);
+		String expectedSelectInQuery = "SELECT * FROM Employee WHERE empId IN ('abc','def','ghi','jkl')";
+		assertEquals(selectInQuery,expectedSelectInQuery);
+	}
+	
+	@Test
+	public void selectInStringsQuery() {
+		String selectInStringsQuery = SQLBuilder.write().select()
+				.all()
+				.from("Employee")
+				.where()
+				.in("empId", Arrays.asList( "abc","def","ghi","jkl"))
+				.build();
+		String expectedSelectInStringsQuery = "SELECT * FROM Employee WHERE empId IN ('abc','def','ghi','jkl')";
+		assertEquals(selectInStringsQuery,expectedSelectInStringsQuery);
+	}
+	
+	@Test
+	public void selectInIntegerQuery() {
+		String selectInIntegerQuery = SQLBuilder.write().select()
+				.all()
+				.from("Employee")
+				.where()
+				.in("empId", Arrays.asList( 1234,321,456,9875))
+				.build();
+		String expectedSelectInIntegerQuery = "SELECT * FROM Employee WHERE empId IN (1234,321,456,9875)";
+		assertEquals(selectInIntegerQuery,expectedSelectInIntegerQuery);
 	}
 	
 	@Test
@@ -41,6 +67,18 @@ public class SelectQueryTest {
 				.build();
 		String expectedSelectAllQuery = "SELECT * FROM Employee WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30";
 		assertEquals(selectAllQuery,expectedSelectAllQuery);
+	}
+
+	@Test
+	public void selectColumnsQuery() {
+		String selectColumnsQuery = SQLBuilder.write().select()
+				.columns(Arrays.asList("empname","empSalary","empDepratment"))
+				.from("Employee")
+				.where().isEqual("EmployeeName","ABCD")
+				.andBetween("EmployeeAge", 21, 30)
+				.build();
+		String expectedSelectColumnsQuery = "SELECT empname,empSalary,empDepratment FROM Employee WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30";
+		assertEquals(selectColumnsQuery,expectedSelectColumnsQuery);
 	}
 	
 	@Test

@@ -34,6 +34,11 @@ public class Select {
 		this.selectColumns.addAll(Arrays.asList(columnList));
 		return this;
 	}
+	
+	public Select columns(List<String> columnList ) {
+		this.selectColumns.addAll(columnList);
+		return this;
+	}
 
 	public Select all() {
 		query.append("*");

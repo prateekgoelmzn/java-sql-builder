@@ -102,6 +102,26 @@ public class Where extends Build{
 		query.append(" ");
 		return this;
 	}
+	
+	public <T> Where in(String colName, List<T> list) {
+		query.append(colName);
+		query.append(" ");
+		query.append("IN");
+		query.append(" ");
+		query.append("(");
+		int i = 0;
+		for (Object ele : list) {
+			Utility.getInstance().handleRHSValue(ele, query);
+			if (i != list.size() - 1) {
+				query.append(",");
+			}
+			i++;
+		}
+		query.append(")");
+		query.append(" ");
+		return this;
+	}
+
 
 	public Where in(String colName, String qry) {
 		query.append(colName);
