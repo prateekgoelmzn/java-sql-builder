@@ -1,5 +1,5 @@
 # java-sql-builder
-[Click her to download Jar File](https://github.com/prateekgoelmzn/java-sql-builder/blob/main/java-sql-builder-0.0.1-SNAPSHOT.jar)
+[Click her to download Jar File](https://github.com/prateekgoelmzn/java-sql-builder/raw/main/java-sql-builder-0.0.1-SNAPSHOT.jar)
 ## Below are some examples showing how we can use this library.
 ### SELECT Queries
 * Example-1
