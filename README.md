@@ -47,3 +47,93 @@ String alterDropQuery = SQLBuilder.write()
                                   .dropColumn("COURSE")
                                   .build();
 ```
+### CREATE Queries
+* Example-1
+```sql
+CREATE TABLE Persons ( 
+  PersonID int, 
+  LastName varchar(255), 
+  FirstName varchar(255), 
+  Address varchar(255), 
+  City varchar(255) 
+)
+```
+```java
+String createQuery = SQLBuilder.write()
+                               .create()
+                               .table("Persons")
+                               .addColumnNameAndDataType("PersonID","int")
+                               .addColumnNameAndDataType("LastName", "varchar(255)")
+                               .addColumnNameAndDataType("FirstName", "varchar(255)")
+                               .addColumnNameAndDataType("Address","varchar(255)")
+                               .addColumnNameAndDataType("City","varchar(255)")
+                               .build();
+```
+
+### DELETE Queries
+* Example-1
+```sql
+DELETE FROM Customers
+```
+```java
+String delQuery  =  SQLBuilder.write()
+                              .delete()
+                              .from("Customers")
+                              .build();
+```
+* Example-2
+```sql
+DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste'
+```
+```java
+String delQuery  =  SQLBuilder.write()
+                              .delete()
+                              .from("Customers")
+                              .where()
+                              .isEqual("CustomerName", "Alfreds Futterkiste")
+                              .build();
+```
+### DROP Queries
+* Example-1
+```sql
+DROP TABLE customers
+```
+```java		
+String dropQuery  =  SQLBuilder.write()
+                               .drop()
+                               .table("customers")
+                               .build();
+```
+
+### INSERT Queries
+* Example-1
+```sql
+INSERT INTO 
+Employee (CustomerName,ContactName,Address,City,PostalCode,Country) 
+VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway')
+```
+```java		
+String insertQuery = SQLBuilder.write()
+                               .insert()
+                               .into("Employee")
+                               .columns("CustomerName", "ContactName", "Address", "City", "PostalCode", "Country")
+                               .values("Cardinal", "Tom B. Erichsen", "Skagen 21", "Stavanger", "4006", "Norway")
+                               .build();
+```
+### UPDATE Queries
+* Example-1
+```sql
+UPDATE Customers 
+SET ContactName='Alfred Schmidt', City='Frankfurt' 
+WHERE CustomerID=1
+```
+```java				
+String updateQuery = SQLBuilder.write()
+                               .update()
+                               .table("Customers")
+                               .set("ContactName","Alfred Schmidt")
+                               .set("City", "Frankfurt")
+                               .where()
+                               .isEqual("CustomerID", 1)
+                               .build();
+```
