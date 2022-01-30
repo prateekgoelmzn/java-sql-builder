@@ -1,5 +1,152 @@
 # java-sql-builder
 ## Below are some examples showing how we can use this library.
+### SELECT Queries
+* Example-1
+```sql
+SELECT * FROM Employee
+```
+```java				
+String selectAllQuery = SQLBuilder.write()
+                                  .select()
+                                  .all()
+                                  .from("Employee")
+                                  .build();
+```
+
+* Example-2
+```sql
+SELECT * FROM Employee WHERE empId IN ('abc','def','ghi','jkl')
+```
+```java						
+String selectInQuery = SQLBuilder.write()
+                                 .select()
+                                 .all()
+                                 .from("Employee")
+                                 .where()
+                                 .in("empId","abc","def","ghi","jkl")
+                                 .build();
+```
+```java								
+String selectInStringsQuery = SQLBuilder.write()
+                                        .select()
+                                        .all()
+                                        .from("Employee")
+                                        .where()
+                                        .in("empId", Arrays.asList( "abc","def","ghi","jkl"))
+                                        .build();
+```
+* Example-3
+```sql
+SELECT * FROM Employee WHERE empId IN (1234,321,456,9875)
+```
+```java						
+String selectInIntegerQuery = SQLBuilder.write()
+                                        .select()
+                                        .all()
+                                        .from("Employee")
+                                        .where()
+                                        .in("empId", Arrays.asList( 1234,321,456,9875))
+                                        .build();
+```
+* Example-4
+```sql
+SELECT * FROM Employee WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30
+```
+```java								
+String selectAllQuery = SQLBuilder.write()
+                                  .select()
+                                  .all()
+                                  .from("Employee")
+                                  .where()
+                                  .isEqual("EmployeeName","ABCD")
+                                  .andBetween("EmployeeAge", 21, 30)
+                                  .build();
+```
+
+* Example-5
+```sql
+SELECT empname,empSalary,empDepratment FROM Employee 
+WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30
+```
+```java										
+String selectColumnsQuery = SQLBuilder.write()
+                                      .select()
+                                      .columns(Arrays.asList("empname","empSalary","empDepratment"))
+                                      .from("Employee")
+                                      .where()
+                                      .isEqual("EmployeeName","ABCD")
+                                      .andBetween("EmployeeAge", 21, 30)
+                                      .build();
+```
+* Example-6
+```sql
+SELECT empname,empSalary FROM Employee 
+WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30
+```
+```java										
+String selectAllQuery = SQLBuilder.write()
+                                  .select()
+                                  .columns("empname","empSalary")
+                                  .from("Employee")
+                                  .where()
+                                  .isEqual("EmployeeName","ABCD")
+                                  .andBetween("EmployeeAge", 21, 30)
+                                  .build();
+```
+* Example-7
+```sql
+SELECT empname,empSalary FROM Employee 
+WHERE EmployeeName='ABCD' AND EmployeeAge BETWEEN 21 AND 30 AND empDept='ABCD' AND empage>34
+```
+```java										
+String selectAllQuery = SQLBuilder.write()
+                                  .select()
+                                  .columns("empname","empSalary")
+                                  .from("Employee")
+                                  .where()
+                                  .isEqual("EmployeeName","ABCD")
+                                  .andBetween("EmployeeAge", 21, 30)
+                                  .andIsEqual("empDept", "ABCD")
+                                  .andIsGreaterThen("empage", 34)
+                                  .build();
+```
+
+* Example-8
+```sql
+SELECT s.last_name,s.first_name,p.course_code, p.status, p.amount 
+FROM enrollment e 
+join student s 
+ON s.id=e.student_id 
+join payment p 
+ON p.course_code=e.course_code 
+AND p.student_id=e.student_id
+```
+```java										
+String selectJoinQuery = SQLBuilder.write()
+                                   .select()
+                                   .columns("s.last_name","s.first_name","p.course_code"," p.status"," p.amount")
+                                   .from("enrollment e")
+                                   .join("join", "student s")
+                                   .on("s.id", "e.student_id")
+                                   .join("join", "payment p")
+                                   .on("p.course_code","e.course_code")
+                                   .and("p.student_id","e.student_id")
+                                   .build();
+```
+
+* Example-9
+```sql
+SELECT * FROM supplier ORDER BY last_name DESC
+```
+```java										
+String selectOrderByQuery = SQLBuilder.write()
+                                      .select()
+                                      .all()
+                                      .from("supplier")
+                                      .orderBy("last_name",Order.DESC)
+                                      .build();
+```
+
 ### ALTER Queries
 * Example-1
 ```sql
