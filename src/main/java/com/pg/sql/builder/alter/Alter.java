@@ -12,6 +12,12 @@ public class Alter {
 		this.query = query;
 	}
 
+	/**
+	 * Pass the table name to alter it.
+	 * 
+	 * @param tablename
+	 * @return Alter
+	 */
 	public Alter table(String tablename) {
 		query.append("TABLE");
 		query.append(" ");
@@ -24,6 +30,12 @@ public class Alter {
 		return new Add(query);
 	}
 
+	/**
+	 * Pass the column name and data type to modify it.
+	 * @param columnName
+	 * @param dataType
+	 * @return Terminate
+	 */
 	public Terminate modifyColumn(String columnName, String dataType) {
 		query.append("MODIFY");
 		query.append(" ");
@@ -34,6 +46,11 @@ public class Alter {
 		return new Terminate(query);
 	}
 
+	/**
+	 * Pass the column name to drop it.
+	 * @param columnName
+	 * @return Terminate
+	 */
 	public Terminate dropColumn(String columnName) {
 		query.append("DROP");
 		query.append(" ");

@@ -20,11 +20,26 @@ public class Add extends Build {
 		this.addColumns = new ArrayList<>();
 	}
 
+	/**
+	 * This method is used to add column with name and its data type.
+	 * 
+	 * @param columnName
+	 * @param dataType
+	 * @return Add
+	 */
 	public Add column(String columnName, String dataType) {
 		this.addColumns.add(Column.init(columnName, dataType));
 		return this;
 	}
 
+	/**
+	 * This method is used to add list of columns with name and its data type.
+	 * <p>Here is an example
+	 * <p>columns("col1Name col1DataType(3)","col2Name col2DataType(3)")
+	 * 
+	 * @param list
+	 * @return Add
+	 */
 	public Add columns(String... list) {
 		for (String str : Arrays.asList(list)) {
 			String[] info = str.split("\\s+");
@@ -33,6 +48,11 @@ public class Add extends Build {
 		return this;
 	}
 
+	/**
+	 * This method is used to return the created sql query in String form.
+	 * 
+	 * @return String
+	 */
 	@Override
 	public String build() {
 		query.append("(");
